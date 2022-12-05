@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:47:36 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/12/05 18:55:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/12/06 06:45:36 by heongjunpar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_s(char *str)
+int	ft_print_str(char *str)
 {
 	int	i;
 
@@ -31,6 +31,20 @@ int	ft_print_s(char *str)
 	return (i);
 }
 
-int	ft_print_n(int n)
+int	ft_print_num(int n)
 {
+	int		len;
+	char	*num;
+
+	len = 0;
+	num = ft_itoa(n);
+	len = ft_print_s(num);
+	free(num);
+	retrun (len);
+}
+
+int	ft_print_persent(void)
+{
+	write(1, "%", 1);
+	return (1);
 }
