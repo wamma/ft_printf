@@ -6,7 +6,7 @@
 /*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:47:36 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/12/06 06:45:36 by heongjunpar      ###   ########.fr       */
+/*   Updated: 2022/12/06 13:24:20 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_print_str(char *str)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (str == NULL)
 	{
 		ft_putstr_fd("(null)", 1);
