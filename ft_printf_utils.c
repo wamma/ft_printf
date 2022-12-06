@@ -3,21 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:47:36 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/12/06 13:24:20 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:44:55 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t	i;
+
+	i = 0;
+	if (fd < 0)
+		return ;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
 
 int	ft_print_str(char *str)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	if (str == NULL)
 	{
 		ft_putstr_fd("(null)", 1);
@@ -38,13 +58,13 @@ int	ft_print_num(int n)
 
 	len = 0;
 	num = ft_itoa(n);
-	len = ft_print_s(num);
+	len = ft_print_str(num);
 	free(num);
-	retrun (len);
+	return (len);
 }
 
-int	ft_print_persent(void)
+int	ft_print_percent(void)
 {
-	write(1, "%", 1);
+	write(1, "%%", 1);
 	return (1);
 }

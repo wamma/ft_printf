@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 06:43:00 by heongjunpar       #+#    #+#             */
-/*   Updated: 2022/12/06 06:53:41 by heongjunpar      ###   ########.fr       */
+/*   Updated: 2022/12/06 15:00:41 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_num_length(unsigned int num)
 	return (cnt);
 }
 
-char	*ft_unsitned_itoa(unsigned int n)
+char	*ft_unsigned_itoa(unsigned int n)
 {
 	char	*num;
 	int		length;
@@ -35,9 +35,10 @@ char	*ft_unsitned_itoa(unsigned int n)
 	if (!num)
 		return (NULL);
 	num[length] = '\0';
+	length--;
 	while (n != 0)
 	{
-		num[length - 1] = n % 10 + '0';
+		num[length] = n % 10 + '0';
 		n /= 10;
 		length--;
 	}
@@ -49,9 +50,9 @@ int	ft_print_unsigned(unsigned int n)
 	int		print_num;
 	char	*num;
 
+	print_num = 0;
 	if (n == 0)
 		print_num += write(1, "0", 1);
-	print_num = 0;
 	else
 	{
 		num = ft_unsigned_itoa(n);

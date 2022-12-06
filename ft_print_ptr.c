@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heongjunpark <heongjunpark@student.42.f    +#+  +:+       +#+        */
+/*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 06:05:47 by heongjunpar       #+#    #+#             */
-/*   Updated: 2022/12/06 06:45:32 by heongjunpar      ###   ########.fr       */
+/*   Updated: 2022/12/06 14:53:41 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_cal_ptr(unsigned long long num)
 {
 	if (num >= 16)
 	{
-		ft_print_ptr(num / 16);
-		ft_print_ptr(num % 16);
+		ft_cal_ptr(num / 16);
+		ft_cal_ptr(num % 16);
 	}
 	else
 	{
