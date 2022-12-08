@@ -6,46 +6,37 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:47:36 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/12/06 11:44:55 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:36:28 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putstr(char *str)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	i;
+	int	i;
+	int	tmp;
 
 	i = 0;
-	if (fd < 0)
-		return ;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
+	while (str[i])
 		i++;
-	}
+	tmp = write(1, str, i);
+	return (tmp);
 }
 
 int	ft_print_str(char *str)
 {
 	int	i;
+	int	tmp;
 
 	i = 0;
 	if (str == NULL)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
+		return (ft_putstr("(null)"));
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		tmp = write(1, &str[i], 1);
+		if (tmp == -1)
+			return (-1);
 		i++;
 	}
 	return (i);
@@ -53,18 +44,25 @@ int	ft_print_str(char *str)
 
 int	ft_print_num(int n)
 {
-	int		len;
-	char	*num;
+	int	len;
 
-	len = 0;
-	num = ft_itoa(n);
-	len = ft_print_str(num);
-	free(num);
+	if (n == 0)
+	{
+		if (ft_printf_char('0') == -1)
+			return (-1);
+		len = 1;
+	}
+	else
+		len = ft_putnbr_base((long long)n);
 	return (len);
 }
 
 int	ft_print_percent(void)
 {
-	write(1, "%%", 1);
+	int	tmp;
+
+	tmp = ft_printf_char('%');
+	if (tmp == -1)
+		return (-1);
 	return (1);
 }

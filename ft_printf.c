@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:42:01 by hyungjup          #+#    #+#             */
-/*   Updated: 2022/12/06 15:54:53 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:52:06 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_printf_char(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 int	ft_format(va_list args, const char format)
@@ -24,19 +23,19 @@ int	ft_format(va_list args, const char format)
 
 	result = 0;
 	if (format == 'c')
-		result += ft_printf_char(va_arg(args, int));
+		result = ft_printf_char(va_arg(args, int));
 	else if (format == 's')
-		result += ft_print_str(va_arg(args, char *));
+		result = ft_print_str(va_arg(args, char *));
 	else if (format == 'd' || format == 'i')
-		result += ft_print_num(va_arg(args, int));
+		result = ft_print_num(va_arg(args, int));
 	else if (format == 'p')
-		result += ft_print_ptr(va_arg(args, unsigned long long));
+		result = ft_print_ptr(va_arg(args, unsigned long long));
 	else if (format == 'u')
-		result += ft_print_unsigned(va_arg(args, unsigned int));
+		result = ft_print_unsigned(va_arg(args, unsigned int));
 	else if (format == 'x' || format == 'X')
-		result += ft_print_hex(va_arg(args, unsigned int), format);
+		result = ft_print_hex(va_arg(args, unsigned int), format);
 	else if (format == '%')
-		result += ft_print_percent();
+		result = ft_print_percent();
 	return (result);
 }
 
@@ -44,10 +43,9 @@ int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		result;
+	int		tmp;
 	va_list	args;
 
-	if (!format)
-		return (-1);
 	i = 0;
 	result = 0;
 	va_start(args, format);
@@ -55,11 +53,19 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			result += ft_format(args, format[i + 1]);
+			tmp = ft_format(args, format[i + 1]);
+			if (tmp == -1)
+				return (tmp);
+			result += tmp;
 			i++;
 		}
 		else
-			result += ft_printf_char(format[i]);
+		{
+			tmp = ft_printf_char(format[i]);
+			if (tmp == -1)
+				return (-1);
+			result += tmp;
+		}
 		i++;
 	}
 	va_end(args);

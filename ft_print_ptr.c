@@ -6,7 +6,7 @@
 /*   By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 06:05:47 by heongjunpar       #+#    #+#             */
-/*   Updated: 2022/12/06 14:53:41 by hyungjup         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:57:09 by hyungjup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_cal_ptr(unsigned long long num)
 	else
 	{
 		if (num < 10)
-			ft_putchar_fd((num + '0'), 1);
+			ft_printf_char((num + '0'));
 		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
+			ft_printf_char((num - 10 + 'a'));
 	}
 }
 
@@ -46,9 +46,16 @@ int	ft_print_ptr(unsigned long long ptr)
 	int	print_memory;
 
 	print_memory = 0;
-	print_memory += write(1, "0x", 2);
+	print_memory = ft_print_str("0x");
+	if (print_memory == -1)
+		return (-1);
 	if (ptr == 0)
-		print_memory += write(1, "0", 1);
+	{
+		print_memory = ft_printf_char('0');
+		if (print_memory == -1)
+			return (-1);
+		return (3);
+	}
 	else
 	{
 		ft_cal_ptr(ptr);

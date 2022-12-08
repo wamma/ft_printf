@@ -6,7 +6,7 @@
 #    By: hyungjup <hyungjup@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 14:27:51 by hyungjup          #+#    #+#              #
-#    Updated: 2022/12/06 11:49:20 by hyungjup         ###   ########.fr        #
+#    Updated: 2022/12/08 14:59:45 by hyungjup         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = ft_printf.c \
 		ft_print_ptr.c \
 		ft_print_unsigned.c \
 		ft_printf_utils.c \
-		ft_itoa.c
+		ft_putnbr_base.c
 
 OBJS = $(SRCS:.c=.o)
 
